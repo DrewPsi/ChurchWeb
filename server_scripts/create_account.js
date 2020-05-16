@@ -8,7 +8,7 @@ function create_account(userObj) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(db_name);
-        dbo.collection("users").insertOne(userObj, function(err, res) {
+        dbo.collection("Users").insertOne(userObj, function(err, res) {
             if (err) throw err;
             db.close();
         });

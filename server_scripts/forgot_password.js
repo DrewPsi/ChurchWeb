@@ -1,6 +1,6 @@
 //If the user forgets their password they can input their email and their password
 //will be emailed to them.
-function forgot_password(email) {
+function forgot_password(userObj) {
     var MongoClient = require('mongodb').MongoClient;
     var url = "mongodb://localhost:27017/";
     var db_name = "";
@@ -33,7 +33,7 @@ function forgot_password(email) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(db_name);
-        dbo.collection("users").findOne({email:email}, function(err, result) {
+        dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
           if (err) throw err;
           
           send_email(result);
