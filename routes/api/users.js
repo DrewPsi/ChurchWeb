@@ -42,19 +42,68 @@ function create_account(userObj) {
         dbo.collection("Users").insertOne(userObj, function(err, res) {
             db.close();
         });
-        return true
     });
+    return true
 }
 
-router.get("/", function(req, res){
-    res.json("This is a json status code for the users api");
-});
+//If the user forgets their password they can input their email and their password
+//will be emailed to them.
+function forgot_password(userObj) {
 
-router.get("/login", function(req, res){
+    function send_email(userObj) {
+        var nodemailer = require('nodemailer');
+
+        var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'applefrittersnoreply@gmail.com',
+            pass: 'z!onfritters'
+        }
+        });
+
+        var mailOptions = {
+        from: 'applefrittersnoreply@gmail.com',
+        to: userObj.email,
+        subject: 'Password Recovery',
+        text: 'Your password is ' + userObj.password + ' \n(Do not reply to this email)'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db(db_name);
+        dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
+          if (err) return false;
+          
+          send_email(result);
+
+          db.close();
+        });
+      });
+      return true
+}
+
+router.post("/login", function(req, res){
     
 });
 
-router.post("/signup", function(req, res){
+router.post("/forgotpassword", function(req, res){
+    if (forgot_password(req.body)) {
+        res.json("An email has been sent to you with your password.");
+    }
+    else {
+        res.json("An account with this email does not exist");
+    }
+});
+
+//Creates an account for the user
+router.post("/register", function(req, res){
     if (create_account(req.body)) {
         res.json("Account Created!");
     }
