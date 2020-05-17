@@ -9,7 +9,7 @@ function test(){
     }
 
     //specify verb and url
-    http.open('POST', '/api/users/signup/', true);
+    http.open('POST', '/api/users/register/', true);
 
     //Send the proper header information along with the request
     http.setRequestHeader('Content-type', 'application/json');
