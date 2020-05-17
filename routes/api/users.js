@@ -51,10 +51,7 @@ router.get("/", function(req, res){
 });
 
 router.get("/login", function(req, res){
-    var userName = req.firstName + " " + req.lastName;
-    if(login(req)){
-        res.render(userName);
-    }
+    
 });
 
 router.post("/signup", function(req, res){
