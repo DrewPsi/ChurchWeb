@@ -9,5 +9,7 @@ router.get("/", function(req, res){
 router.get("/login", function(req, res){
     res.render("home/login");
 });
-
+router.get("/about", function(req, res){
+    res.render("home/about");
+});
 module.exports = router;
