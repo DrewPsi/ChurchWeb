@@ -25,4 +25,19 @@ router.get("/protected", function(req,res){
     }
 });
 
+router.get('/logout', function(req, res) {
+    console.log(req.user)
+
+    try {
+        console.log(authTokens)
+        delete authTokens[req.cookies.AuthToken]
+        console.log(authTokens)
+    }    
+    catch(err){
+            
+    }
+    
+    res.render('home/index');
+});
+
 module.exports = router;

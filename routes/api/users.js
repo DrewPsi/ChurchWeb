@@ -8,14 +8,6 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var db_name = "ChurchDatabase";
 
-//Checks if the email and password match
-function login(userObj) {
-    var match = true;
-    
-    console.log(match)
-    return match
-}
-
 //If the user forgets their password they can input their email and their password
 //will be emailed to them.
 function forgot_password(userObj) {
@@ -69,6 +61,7 @@ function generatePin() {
     return pin;
 }
 
+//Checks if the email and password match
 router.post("/login", function(req, res){
     const generateAuthToken = () => {
         return crypto.randomBytes(30).toString('hex');
@@ -94,8 +87,7 @@ router.post("/login", function(req, res){
             else {
                 res.json("No account found with that email address");
             }
-                
-            
+
             db.close();
         });
     });
