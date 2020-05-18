@@ -13,6 +13,9 @@ router.get("/login", function(req, res){
 router.get("/about", function(req, res){
     res.render("home/about");
 });
+router.get("/signup", function(req, res){
+    res.render("home/signup");
+});
 
 router.get("/protected", function(req,res){
     if (req.user) {
