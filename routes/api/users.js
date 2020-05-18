@@ -108,7 +108,6 @@ router.post("/login", function(req, res){
     }
 
     if (login(req.body)) {
-        console.log("LOGGED IN!");
         var authToken = generateAuthToken();
 
         authTokens[authToken] = req.body.email;

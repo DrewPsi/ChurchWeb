@@ -26,19 +26,34 @@ function test(){
 
 function login(event){
     event.preventDefault();
-    var loginData = {
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
+
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    if (email != "" && password !="") {
+        var loginData = {
+            email: email,
+            password: password
+        }
+        
+        var http = new XMLHttpRequest();
+    
+        //specify verb and url
+        http.open('POST', '/api/users/login/', true);
+    
+        //Send the proper header information along with the request
+        http.setRequestHeader('Content-type', 'application/json');
+    
+        //send request
+        http.send(JSON.stringify(loginData));
+    
+        //response
+        http.onload = function() {
+            window.location.replace("/protected");
+        };
     }
-    console.log(loginData);
-    var http = new XMLHttpRequest();
-
-    //specify verb and url
-    http.open('POST', '/api/users/login/', true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader('Content-type', 'application/json');
-
-    //send request
-    http.send(JSON.stringify(loginData));
+    else {
+        alert("Please complete all fields before attemptin to log in.");
+    }
+    
 }
