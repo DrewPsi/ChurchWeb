@@ -11,36 +11,9 @@ var db_name = "ChurchDatabase";
 //Checks if the email and password match
 function login(userObj) {
     var match = true;
-    MongoClient.connect(url, function(err, db) {
-        var dbo = db.db(db_name);
-        dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
-            try {
-                result.password;
-                match = false;
-                if (userObj.password === result.password) {
-                    match = true;
-                }
-            }
-            catch (err) {
-                match = false;
-            }
-            db.close();
-        });
-    });
+    
     console.log(match)
     return match
-}
-
-//Inserts the userObj into the database
-//The userObj will contain firstName, lastName, email, password
-function create_account(userObj) {
-    MongoClient.connect(url, function(err, db) {
-        var dbo = db.db(db_name);
-        //Otherwise inserts the new user into the database
-        dbo.collection("Users").insertOne(userObj, function(err, res) {
-            db.close();
-        });
-    });
 }
 
 //If the user forgets their password they can input their email and their password
@@ -101,17 +74,31 @@ router.post("/login", function(req, res){
         return crypto.randomBytes(30).toString('hex');
     }
 
-    if (login(req.body)) {
-        var authToken = generateAuthToken();
+    MongoClient.connect(url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection("Users").findOne({email:req.body.email}, function(err, result) {
+            if(result){
+                if (req.body.password == result.password) {
+                    var authToken = generateAuthToken();
 
-        authTokens[authToken] = req.body.email;
+                    authTokens[authToken] = req.body.email;
 
-        res.cookie('AuthToken', authToken);
-        res.redirect('../../../protected');
-        return;
-    } else {
-        res.render('home/login');
-    }
+                    res.cookie('AuthToken', authToken);
+                    res.json("Logged in!");
+                    return;
+                }
+                else {
+                    res.json("Incorrect password");
+                }
+            }
+            else {
+                res.json("No account found with that email address");
+            }
+                
+            
+            db.close();
+        });
+    });
 });
 
 //Sends the user an email with their password
@@ -129,12 +116,23 @@ router.post("/register", function(req, res){
     var pin = generatePin();
     req.body.password = pin;
     console.log(req.body);
-    if (create_account(req.body)) {
-        res.json("Account Created! Your pin is " + pin);
-    }
-    else {
-        res.json("Error, an account with this email address already exists.");
-    }
+
+    //Inserts the userObj into the database
+    //The userObj will contain firstName, lastName, email, password
+    MongoClient.connect(url, function(err, db) {
+        var dbo = db.db(db_name);
+        
+        dbo.collection("Users").insertOne(req.body, function(err, result) {
+            //If the user already exists
+            if (err) {
+                res.json("Error, an account with this email address already exists.");
+            }
+            else {
+                res.json("Account Created! Your pin is " + pin);
+            }
+            db.close();
+        });
+    });
 });
 
 module.exports = router;

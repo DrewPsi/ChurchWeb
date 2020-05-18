@@ -49,11 +49,15 @@ function login(event){
     
         //response
         http.onload = function() {
-            window.location.replace("/protected");
+            var response = JSON.parse(http.response);
+            if ("Logged in!" == response){
+                window.location.replace("/protected");
+            }
+            alert(response);
         };
     }
     else {
-        alert("Please complete all fields before attemptin to log in.");
+        alert("Please complete all fields before attempting to log in.");
     }
     
 }
