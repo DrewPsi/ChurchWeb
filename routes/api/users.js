@@ -1,4 +1,5 @@
 var express = require("express");
+var crypto = require('crypto');
 
 var router = express.Router();
 
@@ -103,7 +104,10 @@ function forgot_password(userObj) {
 }
 
 router.post("/login", function(req, res){
-    console.log(req.body)
+    const generateAuthToken = () => {
+        return crypto.randomBytes(30).toString('hex');
+    }
+
     if (login(req.body)) {
         console.log("LOGGED IN!");
         var authToken = generateAuthToken();
