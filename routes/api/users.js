@@ -2,6 +2,7 @@ var express = require("express");
 
 var router = express.Router();
 
+
 //Connects to the database
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
@@ -9,22 +10,24 @@ var db_name = "ChurchDatabase";
 
 //Checks if the email and password match
 function login(userObj) {
-    var match = false;
+    var match = true;
     MongoClient.connect(url, function(err, db) {
         var dbo = db.db(db_name);
         dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
             try {
-                if (userObj.password == result.password) {
+                result.password;
+                match = false;
+                if (userObj.password === result.password) {
                     match = true;
                 }
             }
-            catch(err) {
-                
+            catch (err) {
+                match = false;
             }
-
             db.close();
         });
     });
+    console.log(match)
     return match
 }
 
@@ -100,17 +103,17 @@ function forgot_password(userObj) {
 }
 
 router.post("/login", function(req, res){
-
-    if (login(res.body)) {
+    console.log(req.body)
+    if (login(req.body)) {
+        console.log("LOGGED IN!");
         var authToken = generateAuthToken();
-
-        authTokens[authToken] = res.body.email;
+        authTokens[authToken] = req.body.email;
 
         res.cookie('AuthToken', authToken);
         res.redirect('/protected');
         return;
     } else {
-        res.render('/home/login');
+        res.render('home/login');
     }
 });
 

@@ -30,10 +30,11 @@ function login(event){
         email: document.getElementById("email").value,
         password: document.getElementById("password").value
     }
+    console.log(loginData);
     var http = new XMLHttpRequest();
 
     //specify verb and url
-    http.open('POST', '/signin', true);
+    http.open('POST', '/api/users/login/', true);
 
     //Send the proper header information along with the request
     http.setRequestHeader('Content-type', 'application/json');
