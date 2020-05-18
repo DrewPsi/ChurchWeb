@@ -1,3 +1,4 @@
+//Calls the backend to log the user in
 function login(event){
     event.preventDefault();
 
@@ -36,6 +37,7 @@ function login(event){
     
 }
 
+//Calls the backend to register the user for the site
 function register(event) {
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
@@ -71,6 +73,7 @@ function register(event) {
     }
 }
 
+//Loads the forgot password page by changing display styles
 function loadForgotPassword() {
     var login = document.getElementById("loginForm");
     login.style.display = "none";
@@ -79,6 +82,7 @@ function loadForgotPassword() {
     forgot.style.display = "block";
 }
 
+//Calls the backend to send a user an email with their password
 function forgotPassword(event) {
     event.preventDefault();
     var email = document.getElementById("emailForgot").value;
@@ -110,4 +114,36 @@ function forgotPassword(event) {
         event.preventDefault();
         alert("Please input your email before submitting.");
     }
+}
+
+//Makes all nav items inactive
+function removeAllActive() {
+    document.getElementById("homeNav").classList.remove('active');
+    document.getElementById("aboutNav").classList.remove('active');
+    document.getElementById("signupNav").classList.remove('active');
+    document.getElementById("loginNav").classList.remove('active');
+}
+
+//Makes the home nav item active
+function onHome() {
+    removeAllActive();
+    document.getElementById("homeNav").classList.add('active');
+}
+
+//Makes the about nav item active
+function onAbout() {
+    removeAllActive();
+    document.getElementById("aboutNav").classList.add('active');
+}
+
+//Makes the signup nav item active
+function onSignup() {
+    removeAllActive();
+    document.getElementById("signupNav").classList.add('active');
+}
+
+//Makes the login nav item active
+function onLogin() {
+    removeAllActive();
+    document.getElementById("loginNav").classList.add('active');
 }
