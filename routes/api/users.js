@@ -3,7 +3,6 @@ var crypto = require('crypto');
 
 var router = express.Router();
 
-
 //Connects to the database
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
@@ -111,10 +110,11 @@ router.post("/login", function(req, res){
     if (login(req.body)) {
         console.log("LOGGED IN!");
         var authToken = generateAuthToken();
+
         authTokens[authToken] = req.body.email;
 
         res.cookie('AuthToken', authToken);
-        res.redirect('/protected');
+        res.redirect('../../../protected');
         return;
     } else {
         res.render('home/login');

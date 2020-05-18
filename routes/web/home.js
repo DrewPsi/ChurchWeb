@@ -16,7 +16,7 @@ router.get("/about", function(req, res){
 
 router.get("/protected", function(req,res){
     if (req.user) {
-        res.render('/protected');
+        res.render('home/protected');
     } else {
         res.render('home/login');
     }

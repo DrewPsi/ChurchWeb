@@ -7,7 +7,7 @@ var crypto = require('crypto');
 var app = express();
 
 //Stores the authorization tokens
-var authTokens = {};
+authTokens = {};
 
 //Adds a port
 app.set("port", process.eventNames.PORT || 3000);
