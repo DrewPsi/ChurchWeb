@@ -34,6 +34,17 @@
     padding:10%;
     
 }
+.text-box-custom-round{
+    display:inline-block;
+    position: relative; 
+    top:10vh; background-color: white;
+    width:100vw; height: auto; 
+    box-shadow: 0vh 0vh .5vh .1vh grey; 
+    border-radius:2%;
+    text-align:left;
+    padding:2%;
+    
+}
 .larg{
     font-size:2vh;
 }
@@ -50,7 +61,22 @@ label{
 input{
     height: 4vh;font-size:2vh;
 }
-
+.cell{
+    border:solid 1px rgba(96, 209, 253, 0.637); border-radius:10%; box-shadow: 0vh 0vh .5vh .1vh grey; cursor: pointer; display: inline; max-height: initial; transition-duration: 50ms;
+}
+.cell:hover{
+    box-shadow:0vh 0vh 1vh .1vh;
+}
+.cell:active{
+    box-shadow: 0 0 0 0;
+}
+.arrow{
+    cursor:pointer; font-size:4vh; transition-duration: 30ms;
+    
+}
+.arrow:hover{
+    font-size: 5vh;
+}
 
 
 
