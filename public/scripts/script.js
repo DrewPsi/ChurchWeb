@@ -115,35 +115,3 @@ function forgotPassword(event) {
         alert("Please input your email before submitting.");
     }
 }
-
-//Makes all nav items inactive
-function removeAllActive() {
-    document.getElementById("homeNav").classList.remove('active');
-    document.getElementById("aboutNav").classList.remove('active');
-    document.getElementById("signupNav").classList.remove('active');
-    document.getElementById("loginNav").classList.remove('active');
-}
-
-//Makes the home nav item active
-function onHome() {
-    removeAllActive();
-    document.getElementById("homeNav").classList.add('active');
-}
-
-//Makes the about nav item active
-function onAbout() {
-    removeAllActive();
-    document.getElementById("aboutNav").classList.add('active');
-}
-
-//Makes the signup nav item active
-function onSignup() {
-    removeAllActive();
-    document.getElementById("signupNav").classList.add('active');
-}
-
-//Makes the login nav item active
-function onLogin() {
-    removeAllActive();
-    document.getElementById("loginNav").classList.add('active');
-}
