@@ -34,29 +34,13 @@ function login(userObj) {
 //Inserts the userObj into the database
 //The userObj will contain firstName, lastName, email, password
 function create_account(userObj) {
-    var success = false;
     MongoClient.connect(url, function(err, db) {
-        
         var dbo = db.db(db_name);
-        //Checks if an account with the same email already exists
-        dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
-            //If result.email causes an error it means that the result is null 
-            //therefore an entry for that email doesn't exist yet
-            try {
-                result.email
-            }
-            catch (error) {
-                success = true
-            }
-          });
-          //Otherwise inserts the new user into the database
-        if(success) {
-            dbo.collection("Users").insertOne(userObj, function(err, res) {
-                db.close();
-            });
-        }
+        //Otherwise inserts the new user into the database
+        dbo.collection("Users").insertOne(userObj, function(err, res) {
+            db.close();
+        });
     });
-    return success
 }
 
 //If the user forgets their password they can input their email and their password
@@ -102,6 +86,16 @@ function forgot_password(userObj) {
       return true
 }
 
+//Randomly generates a pin when an account is created
+function generatePin() {
+    var string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12345678901234567890!@!@";
+    var pin = "";
+    for (let i = 0; i < 8; i++) {
+        pin += string[Math.floor(Math.random() * 76)];
+    }
+    return pin;
+}
+
 router.post("/login", function(req, res){
     const generateAuthToken = () => {
         return crypto.randomBytes(30).toString('hex');
@@ -132,8 +126,11 @@ router.post("/forgotpassword", function(req, res){
 
 //Creates an account for the user
 router.post("/register", function(req, res){
+    var pin = generatePin();
+    req.body.password = pin;
+    console.log(req.body);
     if (create_account(req.body)) {
-        res.json("Account Created!");
+        res.json("Account Created! Your pin is " + pin);
     }
     else {
         res.json("Error, an account with this email address already exists.");
