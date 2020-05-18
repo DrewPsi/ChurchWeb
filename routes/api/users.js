@@ -9,6 +9,7 @@ var db_name = "ChurchDatabase";
 
 //Checks if the email and password match
 function login(userObj) {
+    var match = false;
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(db_name);
@@ -16,15 +17,13 @@ function login(userObj) {
           if (err) throw err;
           
           if (userObj.password == result.password) {
-            return true;
-          }
-          else {
-            return false;
+            match = true;
           }
 
           db.close();
         });
     });
+    return match
 }
 
 //Inserts the userObj into the database
@@ -90,9 +89,21 @@ function forgot_password(userObj) {
 }
 
 router.post("/login", function(req, res){
-    
+
+    if (login(res.body)) {
+        var authToken = generateAuthToken();
+
+        authTokens[authToken] = res.body.email;
+
+        res.cookie('AuthToken', authToken);
+        res.redirect('/protected');
+        return;
+    } else {
+        res.render('/home/login');
+    }
 });
 
+//Sends the user an email with their password
 router.post("/forgotpassword", function(req, res){
     if (forgot_password(req.body)) {
         res.json("An email has been sent to you with your password.");
