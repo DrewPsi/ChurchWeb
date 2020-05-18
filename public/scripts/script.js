@@ -1,29 +1,3 @@
-function test(){
-    var http = new XMLHttpRequest();
-
-    var testObj = {
-        firstName: "AL",
-        lastName: "big",
-        email: "bigman@gmail.com",
-        password: "12345"
-    }
-
-    //specify verb and url
-    http.open('POST', '/api/users/register/', true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader('Content-type', 'application/json');
-
-    //send request
-    http.send(JSON.stringify(testObj));
-
-    //response
-    http.onload = function() {
-        var response = JSON.parse(http.response);
-        alert(response);
-    };
-}
-
 function login(event){
     event.preventDefault();
 
@@ -62,7 +36,7 @@ function login(event){
     
 }
 
-function register(event){
+function register(event) {
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var email = document.getElementById("email").value;
@@ -94,5 +68,46 @@ function register(event){
     else {
         event.preventDefault();
         alert("Please complete all fields before submitting.");
+    }
+}
+
+function loadForgotPassword() {
+    var login = document.getElementById("loginForm");
+    login.style.display = "none";
+    
+    var forgot = document.getElementById("forgotPasswordForm");
+    forgot.style.display = "block";
+}
+
+function forgotPassword(event) {
+    event.preventDefault();
+    var email = document.getElementById("emailForgot").value;
+    
+    if (email != ""){
+        userData = {email:email};
+
+        var http = new XMLHttpRequest();
+    
+        //specify verb and url
+        http.open('POST', '/api/users/forgotpassword/', true);
+    
+        //Send the proper header information along with the request
+        http.setRequestHeader('Content-type', 'application/json');
+    
+        //send request
+        http.send(JSON.stringify(userData));
+    
+        //response
+        http.onload = function() {
+            var response = JSON.parse(http.response);
+            if (response == "An email has been sent to you with your password.") {
+                window.location.reload();
+            }
+            alert(response); 
+        };
+    }
+    else {
+        event.preventDefault();
+        alert("Please input your email before submitting.");
     }
 }

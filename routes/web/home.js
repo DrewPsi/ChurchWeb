@@ -13,6 +13,7 @@ router.get("/login", function(req, res){
 router.get("/about", function(req, res){
     res.render("home/about");
 });
+
 router.get("/signup", function(req, res){
     res.render("home/signup");
 });
@@ -25,18 +26,12 @@ router.get("/protected", function(req,res){
     }
 });
 
+//Logs the user out by deleting their authentication token
 router.get('/logout', function(req, res) {
-    console.log(req.user)
-
     try {
-        console.log(authTokens)
-        delete authTokens[req.cookies.AuthToken]
-        console.log(authTokens)
+        delete authTokens[req.cookies.AuthToken];
     }    
-    catch(err){
-            
-    }
-    
+    catch(err){}
     res.render('home/index');
 });
 

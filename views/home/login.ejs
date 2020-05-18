@@ -4,6 +4,7 @@
             
             <div class=" col-md-0 col-lg-4"></div>
             <div class=" col-md-12 col-lg-4 formCustom">
+            <div id="loginForm" class=" col-md-12 col-lg-4 formCustom">
             <form>
                 <div class="form-group" style="position:relative;top:5vh;">
                     <label style="font-size:2vh;" for="usr">Email:</label>
@@ -13,13 +14,31 @@
                     <label style="font-size:2vh;"for="pwd">Pin:</label>
                     <input style="height: 4vh; font-size:1.5vh;"type="password" class="form-control" id="password">
                     <a class='login' onclick="login(event)"><span class="glyphicon glyphicon-pencil"></span> Login</a>
-                    
-
+                                      
                   </div> 
             </form>      
 
+
                   <a onclick="location.replace('/signup')" class='login'style="top:20vh;"><span class="glyphicon glyphicon-pencil"></span> New? click here to Signup</a>
-            </div>
+                  <a onclick="loadForgotPassword()" class='login'style="top:20vh;"><span class="glyphicon glyphicon-pencil"></span> Forgot Password?</a>
+                </div>
+
+
+                <div id="forgotPasswordForm" class=" col-md-12 col-lg-4 formCustom" style="display:none">
+                    <form>
+                        <div class="form-group" style="position:relative;top:5vh;">
+                            <label style="font-size:2vh;" for="usr">Email:</label>
+                            <input style="height: 4vh;font-size:2vh;" type="text" class="form-control" id="emailForgot">
+                          </div>
+                          <div class="form-group" style="position:relative;top:7vh;">
+                            <a class='login' onclick="forgotPassword(event)"><span class="glyphicon glyphicon-pencil"></span> Retrieve Password</a>
+                                              
+                          </div> 
+                    </form>      
+        
+        
+                          <a onclick="location.replace('/signup')" class='login'style="top:20vh;"><span class="glyphicon glyphicon-pencil"></span> New? click here to Signup</a>
+                        </div>    
             <div class="d-none d-sm-block col-sm-3 col-md-3 col-lg-4 "></div>
 
         </div>

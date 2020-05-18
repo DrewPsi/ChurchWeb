@@ -8,49 +8,6 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var db_name = "ChurchDatabase";
 
-//If the user forgets their password they can input their email and their password
-//will be emailed to them.
-function forgot_password(userObj) {
-
-    function send_email(userObj) {
-        var nodemailer = require('nodemailer');
-
-        var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'applefrittersnoreply@gmail.com',
-            pass: 'z!onfritters'
-        }
-        });
-
-        var mailOptions = {
-        from: 'applefrittersnoreply@gmail.com',
-        to: userObj.email,
-        subject: 'Password Recovery',
-        text: 'Your password is ' + userObj.password + ' \n(Do not reply to this email)'
-        };
-
-        transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log(error);
-            }
-        });
-    }
-
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db(db_name);
-        dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
-          if (err) return false;
-          
-          send_email(result);
-
-          db.close();
-        });
-      });
-      return true
-}
-
 //Randomly generates a pin when an account is created
 function generatePin() {
     var string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12345678901234567890!@!@";
@@ -93,14 +50,50 @@ router.post("/login", function(req, res){
     });
 });
 
-//Sends the user an email with their password
+//If the user forgets their password they can input their email and their password
+//will be emailed to them.
 router.post("/forgotpassword", function(req, res){
-    if (forgot_password(req.body)) {
-        res.json("An email has been sent to you with your password.");
+
+    function send_email(userObj) {
+        var nodemailer = require('nodemailer');
+
+        var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'applefrittersnoreply@gmail.com',
+            pass: 'z!onfritters'
+        }
+        });
+
+        var mailOptions = {
+        from: 'applefrittersnoreply@gmail.com',
+        to: userObj.email,
+        subject: 'Password Recovery',
+        text: 'Your password is ' + userObj.password + ' \n(Do not reply to this email)'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            }
+        });
     }
-    else {
-        res.json("An account with this email does not exist");
-    }
+
+    MongoClient.connect(url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection("Users").findOne({email:req.body.email}, function(err, result) {
+          
+          if (result){
+            send_email(result);
+            res.json("An email has been sent to you with your password.");
+          }
+          else {
+            res.json("An account with this email does not exist");
+          }
+
+          db.close();
+        });
+    });
 });
 
 //Creates an account for the user
