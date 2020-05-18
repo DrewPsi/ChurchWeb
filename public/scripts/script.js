@@ -23,3 +23,21 @@ function test(){
         alert(response);
     };
 }
+
+function login(event){
+    event.preventDefault();
+    var loginData = {
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+    }
+    var http = new XMLHttpRequest();
+
+    //specify verb and url
+    http.open('POST', '/signin', true);
+
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/json');
+
+    //send request
+    http.send(JSON.stringify(loginData));
+}

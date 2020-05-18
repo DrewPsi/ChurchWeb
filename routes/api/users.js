@@ -11,16 +11,18 @@ var db_name = "ChurchDatabase";
 function login(userObj) {
     var match = false;
     MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
         var dbo = db.db(db_name);
         dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
-          if (err) throw err;
-          
-          if (userObj.password == result.password) {
-            match = true;
-          }
+            try {
+                if (userObj.password == result.password) {
+                    match = true;
+                }
+            }
+            catch(err) {
+                
+            }
 
-          db.close();
+            db.close();
         });
     });
     return match
@@ -29,20 +31,29 @@ function login(userObj) {
 //Inserts the userObj into the database
 //The userObj will contain firstName, lastName, email, password
 function create_account(userObj) {
-
+    var success = false;
     MongoClient.connect(url, function(err, db) {
         
         var dbo = db.db(db_name);
         //Checks if an account with the same email already exists
-        if (dbo.collection("Users").find({email: userObj.email}).limit(1)) {
-            return false
+        dbo.collection("Users").findOne({email:userObj.email}, function(err, result) {
+            //If result.email causes an error it means that the result is null 
+            //therefore an entry for that email doesn't exist yet
+            try {
+                result.email
+            }
+            catch (error) {
+                success = true
+            }
+          });
+          //Otherwise inserts the new user into the database
+        if(success) {
+            dbo.collection("Users").insertOne(userObj, function(err, res) {
+                db.close();
+            });
         }
-        //Otherwise inserts the new user into the database
-        dbo.collection("Users").insertOne(userObj, function(err, res) {
-            db.close();
-        });
     });
-    return true
+    return success
 }
 
 //If the user forgets their password they can input their email and their password
