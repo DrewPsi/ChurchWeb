@@ -25,12 +25,11 @@
 .text-box-custom{
     display:inline-block;
     position: relative; 
-    top:10vh; background-color: white;
-    width:100vw; height: 90vh; 
+    background-color: white;
+    width:100vw; height: auto; 
     box-shadow: 0vh 0vh .5vh .1vh grey; 
     border-top-left-radius:2%;
     border-top-right-radius:2%;
-    text-align:left;
     padding:10%;
     
 }
@@ -52,7 +51,6 @@
     font-size:2.2vh;
 }
 .aboutcont{
-    left:4vw;
     position: relative;
 }
 label{

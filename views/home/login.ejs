@@ -13,14 +13,15 @@
                   <div class="form-group" style="position:relative;top:7vh;">
                     <label style="font-size:2vh;"for="pwd">Pin:</label>
                     <input style="height: 4vh; font-size:1.5vh;"type="password" class="form-control" id="password">
-                    <a class='login' onclick="login(event)"><span class="glyphicon glyphicon-pencil"></span> Login</a>
+                    <a class='login' onclick="login(event)"><span class="glyphicon glyphicon-pencil mb-5"></span> Login</a><br>
+                    <a onclick="loadForgotPassword()" class='login'style=""><span class="glyphicon glyphicon-pencil mb-5 mt-5"></span> Forgot Password?</a><br>
+                    <a onclick="location.replace('/signup')" class='login'style=""><span class="glyphicon glyphicon-pencil mt-5"></span> New? click here to Signup</a>
+
                                       
                   </div> 
             </form>      
 
 
-                  <a onclick="location.replace('/signup')" class='login'style="top:20vh;"><span class="glyphicon glyphicon-pencil"></span> New? click here to Signup</a>
-                  <a onclick="loadForgotPassword()" class='login'style="top:20vh;"><span class="glyphicon glyphicon-pencil"></span> Forgot Password?</a>
                 </div>
 
 
