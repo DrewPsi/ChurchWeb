@@ -1,6 +1,6 @@
 .formCustom{
     text-align:center;
-    background-color: white; 
+    background-color: rgb(231, 231, 231); 
     box-shadow: 0vh 0vh .5vh .1vh grey; 
     border-radius:2%;
     height:60vh;
@@ -26,23 +26,24 @@
     background: none;
 }
 .navigation{
-    font-size:large;background-color: #ffffff62;    box-shadow: 0px 2px rgba(48, 48, 48, 0.151);
-}
+    font-size:large;}
 .text-box-custom{
+    color:rgb(0, 0, 0);
     display:inline-block;
     position: relative; 
-    background-color: white;
-    width:100vw; height: auto; 
+    background-color: rgb(233, 233, 233);
+    width:100%; height: auto; 
     box-shadow: 0vh 0vh .5vh .1vh grey; 
     border-top-left-radius:2%;
     border-top-right-radius:2%;
-    padding:10%;
+    padding-top:5%;
+    padding-bottom:10%;
     
 }
 .text-box-custom-round{
     display:inline-block;
     position: relative; 
-    top:10vh; background-color: white;
+    top:10vh; background-color: rgba(255, 255, 255, 0.438);
     width:100vw; height: auto; 
     box-shadow: 0vh 0vh .5vh .1vh grey; 
     border-radius:2%;
