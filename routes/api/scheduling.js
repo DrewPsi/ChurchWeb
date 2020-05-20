@@ -7,7 +7,8 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var db_name = "ChurchDatabase";
 
-router.post("add", function(req, res){
+//Signs a user up
+router.post("/add", function(req, res){
     var date = req.body.date;
     var shift = req.body.shift;
     var job = req.body.job;
@@ -15,25 +16,33 @@ router.post("add", function(req, res){
     MongoClient.connect(url, function(err, db) {
         var dbo = db.db(db_name);
 
-        dbo.collection(date).find({shift:shift, job:job}, function(err, results) {
+        //Checks if exists
+        dbo.collection(date).findOne({shift:shift, job:job}, function(err, results) {
             //Job is taken
-            if (results) {
-                
-            }
+            if (results) {/*do nothing*/}
             //Job is not taken
             else {
-                //Job is not taken
-                dbo.collection("Users").findOne({email:req.cookies.authToken}, function(err, result) {
-                    //User found
-                    if (result) {
+                MongoClient.connect(url, function(err, db) {
+                    var dbo = db.db(db_name);
+                    //Gets the data
+                    dbo.collection("Users").findOne({email:req.user}, function(err, result) {
+                        //Creates the data to be stored in the database
+                        console.log(result)
                         var data = {
-                            Name: result.firstName + " " + result.lastName,
-                            Phone: result.phone,
-                            Job: job,
-                            Shift: shift
+                            name: result.firstName + " " + result.lastName,
+                            phone: result.phone,
+                            job: job,
+                            shift: shift
                         }
-                        dbo.collection(date).insertOne(data);
-                    }
+
+                        MongoClient.connect(url, function(err, db) {
+                                var dbo = db.db(db_name);
+                                //Inserts into database
+                                dbo.collection(date).insertOne(data);
+                                db.close();
+                        }); 
+                    });
+                    db.close();
                 });
             }
         });
