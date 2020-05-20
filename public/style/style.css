@@ -1,9 +1,15 @@
 .formCustom{
     text-align:center;
     background-color: white; 
-    height: 60vh; 
     box-shadow: 0vh 0vh .5vh .1vh grey; 
-    border-radius:2%
+    border-radius:2%;
+    height:60vh;
+}
+.tableContainer{
+    text-align:center;
+    background-color:white;
+    box-shadow: 0 0 .5 .5 grey;
+    border-radius:2%;
 }
 .login{
     font-size:2vh; position: relative; top:5vh; padding:3%; border-radius:2vh; color:black; box-shadow: 0vh 0vh .5vh .1vh grey;cursor: pointer;transition-duration:100ms;
@@ -60,13 +66,14 @@ input{
     height: 4vh;font-size:2vh;
 }
 .cell{
-    border:solid 1px rgba(96, 209, 253, 0.637); border-radius:10%; box-shadow: 0vh 0vh .5vh .1vh grey; cursor: pointer; display: inline; max-height: initial; transition-duration: 50ms;
+    border:solid 1px rgba(96, 209, 253, 0.637); border-radius:10%; box-shadow: 0vh 0vh .5vh .1vh grey; cursor: pointer; transition-duration: 50ms;
 }
 .cell:hover{
     box-shadow:0vh 0vh 1vh .1vh;
 }
 .cell:active{
     box-shadow: 0 0 0 0;
+    background-color: rgba(0, 0, 0, 0.11);
 }
 .arrow{
     cursor:pointer; font-size:4vh; transition-duration: 30ms;
