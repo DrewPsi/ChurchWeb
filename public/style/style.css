@@ -1,10 +1,20 @@
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE and Edge */
+  body {
+    -ms-overflow-style: none;
+  } 
 .formCustom{
     text-align:center;
     background-color: rgb(231, 231, 231); 
     box-shadow: 0vh 0vh .5vh .1vh grey; 
     border-radius:2%;
-    height:60vh;
+    
 }
+
 .tableContainer{
     text-align:center;
     background-color:white;
@@ -12,7 +22,7 @@
     border-radius:2%;
 }
 .login{
-    font-size:2vh; position: relative; top:5vh; padding:3%; border-radius:2vh; color:black; box-shadow: 0vh 0vh .5vh .1vh grey;cursor: pointer;transition-duration:100ms;
+    font-size:20px; position: relative; top:30px; padding:11px; border-radius:20px; color:black; box-shadow: 0vh 0vh .5vh .1vh grey;cursor: pointer;transition-duration:100ms;
 }
 .login:hover{
     text-decoration: none;
@@ -31,7 +41,7 @@
     color:rgb(0, 0, 0);
     display:inline-block;
     position: relative; 
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(192, 225, 231);
     width:100%; height: auto; 
     box-shadow: 0vh 0vh .5vh .1vh grey; 
     border-top-left-radius:2%;
@@ -61,7 +71,7 @@
     position: relative;
 }
 label{
-    font-size:2vh;
+    font-size:20px;
 }
 input{
     height: 4vh;font-size:2vh;
