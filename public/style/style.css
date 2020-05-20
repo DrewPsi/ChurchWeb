@@ -41,9 +41,9 @@
     color:rgb(0, 0, 0);
     display:inline-block;
     position: relative; 
-    background-color: rgb(192, 225, 231);
+    background-color: rgb(233, 233, 233);
     width:100%; height: auto; 
-    box-shadow: 0vh 0vh .5vh .1vh grey; 
+    box-shadow: 0vh 0vh .5vh .2vh grey; 
     border-top-left-radius:2%;
     border-top-right-radius:2%;
     padding-top:5%;
