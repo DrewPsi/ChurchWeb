@@ -42,12 +42,14 @@ function register(event) {
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
     
-    if (firstName != "" && lastName != "" && email != "") {
+    if (firstName != "" && lastName != "" && email != "" && phone != "") {
         var userData = {
             firstName: firstName,
             lastName: lastName,
-            email: email
+            email: email,
+            phone: phone
         }
         
         var http = new XMLHttpRequest();
