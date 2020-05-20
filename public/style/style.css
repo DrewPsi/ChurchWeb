@@ -22,7 +22,7 @@
     border-radius:2%;
 }
 .login{
-    font-size:20px; position: relative; top:30px; padding:11px; border-radius:20px; color:black; box-shadow: 0vh 0vh .5vh .1vh grey;cursor: pointer;transition-duration:100ms;
+    font-size:20px; position: relative; top:30px; padding:11px; border-radius:20px; color:black; box-shadow: 0vh 0vh .5vh .1vh grey;cursor: pointer;transition-duration:100ms;background-color:rgba(255, 255, 255, 0.74);
 }
 .login:hover{
     text-decoration: none;
