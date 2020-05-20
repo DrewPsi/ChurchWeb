@@ -6,155 +6,159 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">        
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     </head>
-    <body style="text-align:center;" ontouchstart>
+    <body style="text-align:center;" ontouchstart onload="loadtable()">
+      
+        <%- include ("../partial/_protectednav.ejs"); %>
 
         <div class="container text-box-custom-round tableContainer ">
 
             <!--Table-->
-<table id="tablePreview" class="table table-bordered table-striped table-hover ">
-    <!--Table head-->
-      <thead>
-        <h1>DATE TIME</h1>
-        <tr>
-          <th>JOB</th>
-          <th>NAME</th>
-          <th>Phone</th>
-        </tr>
-      </thead>
-      <!--Table head-->
-      <!--Table body-->
-      <tbody>
-        <tr>
-          <td>Fryer</td>
-          <td class="cell"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Fryer</td>
-          <td class="cell"></td>
-          <td></td>
+          <table id="tablePreview" class="table table-bordered table-striped table-hover ">
+          <!--Table head-->
+            <thead>
+              <h1>DATE TIME</h1>
+              <tr>
+                <th>JOB</th>
+                <th>NAME</th>
+                <th>PHONE</th>
+              </tr>
+            </thead>
+            <!--Table head-->
+            <!--Table body-->
+            <tbody>
+              <tr>
+                <td>Fryer</td>
+                <td class="cell" id="Fryer1"></td>
+                <td id="Fryer1Num"></td>
+              </tr>
+              <tr>
+                <td>Fryer</td>
+                <td class="cell" id="Fryer2"></td>
+                <td id="Fryer2Num"></td>
 
-        </tr>
-        <tr>
-          <td>Fryer</td>
-          <td class="cell"></td>
-          <td></td>
+              </tr>
+              <tr>
+                <td>Fryer</td>
+                <td class="cell" id="Fryer3"></td>
+                <td id="Fryer3Num"></td>
 
-        </tr>
-        <tr>
-          <td>Fryer</td>
-          <td class="cell"> </td>
-          <td></td>
+              </tr>
+              <tr>
+                <td>Fryer</td>
+                <td class="cell" id="Fryer4"> </td>
+                <td id="Fryer4Num"></td>
 
-        </tr>
-        <tr>
-            <td>Mixer</td>
-            <td class="cell"> </td>
-            <td></td>
+              </tr>
+              <tr>
+                  <td>Mixer</td>
+                  <td class="cell" id="Mixer1"> </td>
+                  <td id="Mixer1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Mixer</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Mixer</td>
+                  <td class="cell" id="Mixer2"> </td>
+                  <td id="Mixer2Num"></td>
 
-          </tr>   
-          <tr>
-            <td>Bagger</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>   
+                <tr>
+                  <td>Bagger</td>
+                  <td class="cell" id="Bagger1"> </td>
+                  <td id="Bagger1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Bagger</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Bagger</td>
+                  <td class="cell" id="Bagger2"> </td>
+                  <td id="Bagger2Num"></td>
 
-          </tr>
-          <tr>
-            <td>Bagger</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Bagger</td>
+                  <td class="cell" id="Bagger3"> </td>
+                  <td id="Bagger3Num"></td>
 
-          </tr>
-          <tr>
-            <td>Bag opener</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Bag opener</td>
+                  <td class="cell" id="BagOpener1"> </td>
+                  <td id="BagOpener1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Bag opener</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Bag opener</td>
+                  <td class="cell" id="BagOpener2"> </td>
+                  <td id="BagOpener1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Cashier</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Cashier</td>
+                  <td class="cell" id="Cashier1"> </td>
+                  <td id="Cashier1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Cashier</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Cashier</td>
+                  <td class="cell" id="Cashier2"> </td>
+                  <td id="Cashier2Num"></td>
 
-          </tr>
-          <tr>
-            <td>Floater</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Floater</td>
+                  <td class="cell" id="Floater1"> </td>
+                  <td id="Floater1Num"></td>
 
-          </tr>
-          <tr>
-            <td>pots and pans</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Pots and pans</td>
+                  <td class="cell" id="Pots1"> </td>
+                  <td id="Pots1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Powerwashing</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Powerwashing</td>
+                  <td class="cell" id="Powerwashing1"> </td>
+                  <td id="Powerwashing1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Powerwasher runner</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Powerwasher runner</td>
+                  <td class="cell" id="PowerwashRunner1"> </td>
+                  <td id="PowerwashRunner1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Kitchen</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Kitchen</td>
+                  <td class="cell" id="Kitchen1"> </td>
+                  <td id="Kitchen1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Kitchen</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Kitchen</td>
+                  <td class="cell" id="Kitchen2"> </td>
+                  <td id="Kitchen2Num"></td>
 
-          </tr>
-          <tr>
-            <td>Re-stock</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Re-stock</td>
+                  <td class="cell" id="Restock1"> </td>
+                  <td id="Restock1Num"></td>
 
-          </tr>
-          <tr>
-            <td>Re-stock</td>
-            <td class="cell"> </td>
-            <td></td>
+                </tr>
+                <tr>
+                  <td>Re-stock</td>
+                  <td class="cell" id="Restock2"> </td>
+                  <td id="Restock2Num"></td>
+                </tr>
+            </tbody>
+            <!--Table body-->
+          </table>
+      <!--Table-->
+      </div>
 
-          </tr>
-      </tbody>
-      <!--Table body-->
-    </table>
-    <!--Table-->
-
-
-
+      <script type="text/javascript" src="/scripts/protectedscript.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </body>
 </html>

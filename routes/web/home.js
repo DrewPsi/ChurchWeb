@@ -22,7 +22,7 @@ router.get("/protected", function(req,res){
     if (req.user) {
         res.render('home/protected');
     } else {
-        res.render('home/protected');
+        res.render('home/login');
     }
 });
 
