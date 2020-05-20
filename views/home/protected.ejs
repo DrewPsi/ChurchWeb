@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">        
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     </head>
-    <body style="text-align:center;" ontouchstart onload="loadtable()">
+    <body style="text-align:center;" ontouchstart>
       
         <%- include ("../partial/_protectednav.ejs"); %>
 
@@ -28,126 +28,126 @@
             <tbody>
               <tr>
                 <td>Fryer</td>
-                <td class="cell" id="Fryer1"></td>
+                <td class="cell inputField" id="Fryer1"></td>
                 <td id="Fryer1Num"></td>
               </tr>
               <tr>
                 <td>Fryer</td>
-                <td class="cell" id="Fryer2"></td>
+                <td class="cell inputField" id="Fryer2"></td>
                 <td id="Fryer2Num"></td>
 
               </tr>
               <tr>
                 <td>Fryer</td>
-                <td class="cell" id="Fryer3"></td>
+                <td class="cell inputField" id="Fryer3"></td>
                 <td id="Fryer3Num"></td>
 
               </tr>
               <tr>
                 <td>Fryer</td>
-                <td class="cell" id="Fryer4"> </td>
+                <td class="cell inputField" id="Fryer4"> </td>
                 <td id="Fryer4Num"></td>
 
               </tr>
               <tr>
                   <td>Mixer</td>
-                  <td class="cell" id="Mixer1"> </td>
+                  <td class="cell inputField" id="Mixer1"></td>
                   <td id="Mixer1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Mixer</td>
-                  <td class="cell" id="Mixer2"> </td>
+                  <td class="cell inputField" id="Mixer2"> </td>
                   <td id="Mixer2Num"></td>
 
                 </tr>   
                 <tr>
                   <td>Bagger</td>
-                  <td class="cell" id="Bagger1"> </td>
+                  <td class="cell inputField" id="Bagger1"> </td>
                   <td id="Bagger1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Bagger</td>
-                  <td class="cell" id="Bagger2"> </td>
+                  <td class="cell inputField" id="Bagger2"> </td>
                   <td id="Bagger2Num"></td>
 
                 </tr>
                 <tr>
                   <td>Bagger</td>
-                  <td class="cell" id="Bagger3"> </td>
+                  <td class="cell inputField" id="Bagger3"> </td>
                   <td id="Bagger3Num"></td>
 
                 </tr>
                 <tr>
                   <td>Bag opener</td>
-                  <td class="cell" id="BagOpener1"> </td>
+                  <td class="cell inputField" id="BagOpener1"> </td>
                   <td id="BagOpener1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Bag opener</td>
-                  <td class="cell" id="BagOpener2"> </td>
+                  <td class="cell inputField" id="BagOpener2"> </td>
                   <td id="BagOpener1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Cashier</td>
-                  <td class="cell" id="Cashier1"> </td>
+                  <td class="cell inputField" id="Cashier1"> </td>
                   <td id="Cashier1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Cashier</td>
-                  <td class="cell" id="Cashier2"> </td>
+                  <td class="cell inputField" id="Cashier2"> </td>
                   <td id="Cashier2Num"></td>
 
                 </tr>
                 <tr>
                   <td>Floater</td>
-                  <td class="cell" id="Floater1"> </td>
+                  <td class="cell inputField" id="Floater1"> </td>
                   <td id="Floater1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Pots and pans</td>
-                  <td class="cell" id="Pots1"> </td>
+                  <td class="cell inputField" id="Pots1"> </td>
                   <td id="Pots1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Powerwashing</td>
-                  <td class="cell" id="Powerwashing1"> </td>
+                  <td class="cell inputField" id="Powerwashing1"> </td>
                   <td id="Powerwashing1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Powerwasher runner</td>
-                  <td class="cell" id="PowerwashRunner1"> </td>
+                  <td class="cell inputField" id="PowerwashRunner1"> </td>
                   <td id="PowerwashRunner1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Kitchen</td>
-                  <td class="cell" id="Kitchen1"> </td>
+                  <td class="cell inputField" id="Kitchen1"> </td>
                   <td id="Kitchen1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Kitchen</td>
-                  <td class="cell" id="Kitchen2"> </td>
+                  <td class="cell inputField" id="Kitchen2"> </td>
                   <td id="Kitchen2Num"></td>
 
                 </tr>
                 <tr>
                   <td>Re-stock</td>
-                  <td class="cell" id="Restock1"> </td>
+                  <td class="cell inputField" id="Restock1"> </td>
                   <td id="Restock1Num"></td>
 
                 </tr>
                 <tr>
                   <td>Re-stock</td>
-                  <td class="cell" id="Restock2"> </td>
+                  <td class="cell inputField" id="Restock2"> </td>
                   <td id="Restock2Num"></td>
                 </tr>
             </tbody>
@@ -156,7 +156,7 @@
       <!--Table-->
       </div>
 
-      <button onclick="test()">TEST</button>
+      <button onclick="getSheetInfo('October2','1')">TEST</button>
 
       <script type="text/javascript" src="/scripts/protectedscript.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

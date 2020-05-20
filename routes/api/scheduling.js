@@ -27,7 +27,6 @@ router.post("/add", function(req, res){
                     //Gets the data
                     dbo.collection("Users").findOne({email:req.user}, function(err, result) {
                         //Creates the data to be stored in the database
-                        console.log(result)
                         var data = {
                             name: result.firstName + " " + result.lastName,
                             phone: result.phone,
@@ -46,6 +45,21 @@ router.post("/add", function(req, res){
                 });
             }
         });
+        db.close();
+    });
+});
+
+//Returns a list of all signed up for a certain shift
+router.post("/get", function(req,res){
+    var date = req.body.date;
+    var shift = req.body.shift;
+
+    MongoClient.connect(url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(date).find({shift:shift}).toArray(function(err, results){
+            res.json(results);
+        });
+        
         db.close();
     });
 });
