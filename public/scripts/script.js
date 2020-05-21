@@ -67,6 +67,7 @@ function register(event) {
         http.onload = function() {
             var response = JSON.parse(http.response);
             alert(response); 
+            window.location.replace("/login");
         };
     }
     else {
@@ -106,10 +107,10 @@ function forgotPassword(event) {
         //response
         http.onload = function() {
             var response = JSON.parse(http.response);
-            if (response == "An email has been sent to you with your password.") {
+            alert(response); 
+            if (response == "An email has been sent to you with your pin.") {
                 window.location.reload();
             }
-            alert(response); 
         };
     }
     else {

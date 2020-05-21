@@ -68,8 +68,8 @@ router.post("/forgotpassword", function(req, res){
         var mailOptions = {
         from: 'applefrittersnoreply@gmail.com',
         to: userObj.email,
-        subject: 'Password Recovery',
-        text: 'Your password is ' + userObj.password + ' \n(Do not reply to this email)'
+        subject: 'Pin Recovery',
+        text: 'Your pin is ' + userObj.password + ' \n(Do not reply to this email)'
         };
 
         transporter.sendMail(mailOptions, function(error, info){
@@ -85,7 +85,7 @@ router.post("/forgotpassword", function(req, res){
           
           if (result){
             send_email(result);
-            res.json("An email has been sent to you with your password.");
+            res.json("An email has been sent to you with your pin.");
           }
           else {
             res.json("An account with this email does not exist");
@@ -100,7 +100,6 @@ router.post("/forgotpassword", function(req, res){
 router.post("/register", function(req, res){
     var pin = generatePin();
     req.body.password = pin;
-    console.log(req.body);
 
     //Inserts the userObj into the database
     //The userObj will contain firstName, lastName, email, password
