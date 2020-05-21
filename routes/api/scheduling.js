@@ -13,6 +13,16 @@ router.post("/add", function(req, res){
     var shift = req.body.shift;
     var job = req.body.job;
     var name = req.body.name;
+    var sub = req.body.sub;
+    var phone = req.body.phone;
+
+    var data = {
+        name:name,
+        phone:phone,
+        job:job,
+        shift:shift,
+        sub:sub
+    };
 
     MongoClient.connect(url, function(err, db) {
         var dbo = db.db(db_name);
@@ -25,28 +35,13 @@ router.post("/add", function(req, res){
             else {
                 MongoClient.connect(url, function(err, db) {
                     var dbo = db.db(db_name);
-                    //Gets the data
-                    dbo.collection("Users").findOne({email:req.user}, function(err, result) {
-                        //Creates the data to be stored in the database
-                        var data = {
-                            name: name,
-                            phone: result.phone,
-                            job: job,
-                            shift: shift,
-                            sub: result.firstName + " " + result.lastName
-                        }
-
-                        MongoClient.connect(url, function(err, db) {
-                                var dbo = db.db(db_name);
-                                //Inserts into database
-                                dbo.collection(date).insertOne(data);
-                                db.close();
-                        }); 
-                    });
+                    //Inserts into database
+                    dbo.collection(date).insertOne(data);
                     db.close();
-                });
+                }); 
             }
         });
+        res.json("You have successfully signed up");
         db.close();
     });
 });

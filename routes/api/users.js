@@ -38,7 +38,7 @@ router.post("/login", function(req, res){
                     return;
                 }
                 else {
-                    res.json("Incorrect password");
+                    res.json("Incorrect pin");
                 }
             }
             else {
@@ -115,6 +115,21 @@ router.post("/register", function(req, res){
             else {
                 res.json("Account Created! Your pin is " + pin);
             }
+            db.close();
+        });
+    });
+});
+
+//Gets the users name and number
+router.get("/getinfo", function(req, res){
+    MongoClient.connect(url, function(err, db) {
+        var dbo = db.db(db_name);
+        
+        dbo.collection("Users").findOne({email:req.user}, function(err, result) {
+            //If the user already exists
+            var name = result.firstName + " " + result.lastName;
+            var phone = result.phone;
+            res.json({name:name, phone:phone});
             db.close();
         });
     });
