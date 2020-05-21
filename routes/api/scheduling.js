@@ -12,6 +12,7 @@ router.post("/add", function(req, res){
     var date = req.body.date;
     var shift = req.body.shift;
     var job = req.body.job;
+    var name = req.body.name;
 
     MongoClient.connect(url, function(err, db) {
         var dbo = db.db(db_name);
@@ -28,10 +29,11 @@ router.post("/add", function(req, res){
                     dbo.collection("Users").findOne({email:req.user}, function(err, result) {
                         //Creates the data to be stored in the database
                         var data = {
-                            name: result.firstName + " " + result.lastName,
+                            name: name,
                             phone: result.phone,
                             job: job,
-                            shift: shift
+                            shift: shift,
+                            sub: result.firstName + " " + result.lastName
                         }
 
                         MongoClient.connect(url, function(err, db) {

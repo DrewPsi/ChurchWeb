@@ -2,7 +2,7 @@
 function login(event){
     event.preventDefault();
 
-    var email = document.getElementById("email").value;
+    var email = document.getElementById("email").value.toLowerCase();
     var password = document.getElementById("password").value;
 
     if (email != "" && password !="") {
@@ -41,7 +41,7 @@ function login(event){
 function register(event) {
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
-    var email = document.getElementById("email").value;
+    var email = document.getElementById("email").value.toLowerCase();
     var phone = document.getElementById("phone").value;
     
     if (firstName != "" && lastName != "" && email != "" && phone != "") {
@@ -87,7 +87,7 @@ function loadForgotPassword() {
 //Calls the backend to send a user an email with their password
 function forgotPassword(event) {
     event.preventDefault();
-    var email = document.getElementById("emailForgot").value;
+    var email = document.getElementById("emailForgot").value.toLowerCase();
     
     if (email != ""){
         userData = {email:email};

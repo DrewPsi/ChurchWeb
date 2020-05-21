@@ -9,9 +9,11 @@
     <body style="text-align:center;" ontouchstart>
       
         <%- include ("../partial/_protectednav.ejs"); %>
-
-        <div class="container text-box-custom-round tableContainer ">
-
+        
+        <%- include ("../partial/_signupForm.ejs"); %>
+        
+        <div id="signupSheet" class="container text-box-custom-round tableContainer">
+          
             <!--Table-->
           <table id="tablePreview" class="table table-bordered table-striped table-hover ">
           <!--Table head-->
@@ -21,6 +23,7 @@
                 <th>JOB</th>
                 <th>NAME</th>
                 <th>PHONE</th>
+                <th>SUBMITTED BY</th>
               </tr>
             </thead>
             <!--Table head-->
@@ -30,125 +33,127 @@
                 <td>Fryer</td>
                 <td class="cell inputField" id="Fryer1"></td>
                 <td id="Fryer1Num"></td>
+                <td id="Fryer1Sub"></td>
               </tr>
               <tr>
                 <td>Fryer</td>
                 <td class="cell inputField" id="Fryer2"></td>
                 <td id="Fryer2Num"></td>
-
+                <td id="Fryer2Sub"></td>
               </tr>
               <tr>
                 <td>Fryer</td>
                 <td class="cell inputField" id="Fryer3"></td>
                 <td id="Fryer3Num"></td>
-
+                <td id="Fryer3Sub"></td>
               </tr>
               <tr>
                 <td>Fryer</td>
                 <td class="cell inputField" id="Fryer4"> </td>
                 <td id="Fryer4Num"></td>
-
+                <td id="Fryer4Sub"></td>
               </tr>
               <tr>
                   <td>Mixer</td>
                   <td class="cell inputField" id="Mixer1"></td>
                   <td id="Mixer1Num"></td>
-
+                  <td id="Mixer1Sub"></td>
                 </tr>
                 <tr>
                   <td>Mixer</td>
                   <td class="cell inputField" id="Mixer2"> </td>
                   <td id="Mixer2Num"></td>
-
+                  <td id="Mixer2Sub"></td>
                 </tr>   
                 <tr>
                   <td>Bagger</td>
                   <td class="cell inputField" id="Bagger1"> </td>
                   <td id="Bagger1Num"></td>
-
+                  <td id="Bagger1Sub"></td>
                 </tr>
                 <tr>
                   <td>Bagger</td>
                   <td class="cell inputField" id="Bagger2"> </td>
                   <td id="Bagger2Num"></td>
-
+                  <td id="Bagger2Sub"></td>
                 </tr>
                 <tr>
                   <td>Bagger</td>
                   <td class="cell inputField" id="Bagger3"> </td>
                   <td id="Bagger3Num"></td>
-
+                  <td id="Bagger3Sub"></td>
                 </tr>
                 <tr>
                   <td>Bag opener</td>
                   <td class="cell inputField" id="BagOpener1"> </td>
                   <td id="BagOpener1Num"></td>
-
+                  <td id="BagOpener1Sub"></td>
                 </tr>
                 <tr>
                   <td>Bag opener</td>
                   <td class="cell inputField" id="BagOpener2"> </td>
-                  <td id="BagOpener1Num"></td>
-
+                  <td id="BagOpener2Num"></td>
+                  <td id="BagOpener2Sub"></td>
                 </tr>
                 <tr>
                   <td>Cashier</td>
                   <td class="cell inputField" id="Cashier1"> </td>
                   <td id="Cashier1Num"></td>
-
+                  <td id="Cashier1Sub"></td>
                 </tr>
                 <tr>
                   <td>Cashier</td>
                   <td class="cell inputField" id="Cashier2"> </td>
                   <td id="Cashier2Num"></td>
-
+                  <td id="Cashier2Sub"></td>
                 </tr>
                 <tr>
                   <td>Floater</td>
                   <td class="cell inputField" id="Floater1"> </td>
                   <td id="Floater1Num"></td>
-
+                  <td id="Floater1Sub"></td>
                 </tr>
                 <tr>
                   <td>Pots and pans</td>
                   <td class="cell inputField" id="Pots1"> </td>
                   <td id="Pots1Num"></td>
-
+                  <td id="Pots1Sub"></td>
                 </tr>
                 <tr>
                   <td>Powerwashing</td>
                   <td class="cell inputField" id="Powerwashing1"> </td>
                   <td id="Powerwashing1Num"></td>
-
+                  <td id="Powerwashing1Sub"></td>
                 </tr>
                 <tr>
                   <td>Powerwasher runner</td>
                   <td class="cell inputField" id="PowerwashRunner1"> </td>
                   <td id="PowerwashRunner1Num"></td>
-
+                  <td id="PowerwashRunner1Sub"></td>
                 </tr>
                 <tr>
                   <td>Kitchen</td>
                   <td class="cell inputField" id="Kitchen1"> </td>
                   <td id="Kitchen1Num"></td>
-
+                  <td id="Kitchen1Sub"></td>
                 </tr>
                 <tr>
                   <td>Kitchen</td>
                   <td class="cell inputField" id="Kitchen2"> </td>
                   <td id="Kitchen2Num"></td>
-
+                  <td id="Kitchen2Sub"></td>
                 </tr>
                 <tr>
                   <td>Re-stock</td>
                   <td class="cell inputField" id="Restock1"> </td>
                   <td id="Restock1Num"></td>
-
+                  <td id="Restock1Sub"></td>
                 </tr>
                 <tr>
                   <td>Re-stock</td>
                   <td class="cell inputField" id="Restock2"> </td>
                   <td id="Restock2Num"></td>
+                  <td id="Restock2Sub"></td>
                 </tr>
             </tbody>
             <!--Table body-->

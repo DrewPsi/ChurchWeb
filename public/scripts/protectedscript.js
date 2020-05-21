@@ -20,7 +20,8 @@ function test1() {
     var testObj = {
         date: "October2",
         shift: "1",
-        job: "Fryer1"
+        job: "Fryer2",
+        name: "Jack!"
     }
 
     var http = new XMLHttpRequest();
@@ -84,21 +85,42 @@ function getSheetInfo(date, shift){
     };
 }
 
+//A helper function for loading the page
 function setPage(list){
+    //Fills each row for which a user has volunteered
     list.forEach(element => {
         var job = element.job;
         var phone = element.phone;
         var name = element.name;
+        var sub = element.sub;
 
         document.getElementById(job).innerText = name;
         document.getElementById(job+"Num").innerText = phone;
+        document.getElementById(job+"Sub").innerText = sub;
     });
 
-    checkbox = document.createElement("INPUT");
-    checkbox.setAttribute("type", "checkbox");
-
+    //Places a signup button in each row that hasn't been filled
     docList = document.getElementsByClassName("inputField");
     for (let i = 0; i < docList.length; i++) {
-        docList[i].appendChild(checkbox);
+
+        if(docList[i].innerText == '') {
+            var id = docList[i].attributes.id.value;
+
+            var btn1 = document.createElement("button");
+            btn1.setAttribute("onclick", "signup('"+id+"')");
+            btn1.setAttribute("class", "btn-lg btn-dark");
+            btn1.innerText="SIGN UP";
+            
+            docList[i].appendChild(btn1);
+        }
+        
     }
+    
+}
+
+//Loads the signup form
+function signup(job) {
+
+    //Shows the signup form position: fixed; z-index: 10;
+    document.getElementById("signupForm").setAttribute("style", "display:inline-block; z-index:10;");
 }
