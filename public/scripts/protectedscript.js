@@ -217,8 +217,10 @@ function signup() {
             http.onload = function() {
                 var response = JSON.parse(http.response);
                 alert(response); 
-                closeSignup();
-                getSheetInfo(date,shift);
+                if (response == "You have successfully signed up.") {
+                    closeSignup();
+                    getSheetInfo(date,shift);
+                }
             };
     
         }

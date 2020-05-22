@@ -1,5 +1,7 @@
 var express = require("express");
+var Filter = require('bad-words');
 
+var filter = new Filter();
 var router = express.Router();
 
 //Connects to the database
@@ -24,26 +26,32 @@ router.post("/add", function(req, res){
         sub:sub
     };
 
-    MongoClient.connect(url, function(err, db) {
-        var dbo = db.db(db_name);
-
-        //Checks if exists
-        dbo.collection(date).findOne({shift:shift, job:job}, function(err, results) {
-            //Job is taken
-            if (results) {/*do nothing*/}
-            //Job is not taken
-            else {
-                MongoClient.connect(url, function(err, db) {
-                    var dbo = db.db(db_name);
-                    //Inserts into database
-                    dbo.collection(date).insertOne(data);
-                    db.close();
-                }); 
-            }
+    //Makes sure the name does not contain swears
+    if (filter.isProfane(name)) {
+        res.json("Please make sure that your name does not include swears/profane language.");
+    }
+    else {
+        MongoClient.connect(url, function(err, db) {
+            var dbo = db.db(db_name);
+    
+            //Checks if exists
+            dbo.collection(date).findOne({shift:shift, job:job}, function(err, results) {
+                //Job is taken
+                if (results) {/*do nothing*/}
+                //Job is not taken
+                else {
+                    MongoClient.connect(url, function(err, db) {
+                        var dbo = db.db(db_name);
+                        //Inserts into database
+                        dbo.collection(date).insertOne(data);
+                        db.close();
+                    }); 
+                }
+            });
+            res.json("You have successfully signed up.");
+            db.close();
         });
-        res.json("You have successfully signed up");
-        db.close();
-    });
+    }
 });
 
 //Returns a list of all signed up for a certain shift
