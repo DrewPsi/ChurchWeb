@@ -44,33 +44,50 @@ function register(event) {
     var email = document.getElementById("email").value.toLowerCase();
     var phone = document.getElementById("phone").value;
     
-    if (firstName != "" && lastName != "" && email != "" && phone != "") {
-        var userData = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phone
+    //Reformats the phone number
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+        if (match) {
+          return match[1] + '-' + match[2] + '-' + match[3]
         }
-        
-        var http = new XMLHttpRequest();
-    
-        //specify verb and url
-        http.open('POST', '/api/users/register/', true);
-    
-        //Send the proper header information along with the request
-        http.setRequestHeader('Content-type', 'application/json');
-    
-        //send request
-        http.send(JSON.stringify(userData));
-    
-        //response
-        http.onload = function() {
-            var response = JSON.parse(http.response);
-            alert(response); 
-            if (response.includes("pin")){
-                window.location.replace("/login");
+        return null
+    }
+
+    //Makes sure all fields are filled in
+    if (firstName != "" && lastName != "" && email != "" && phone != "") {
+        //Validates the phone number
+        if (/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(phone)){
+            var userData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: formatPhoneNumber(phone)
             }
-        };
+            
+            var http = new XMLHttpRequest();
+        
+            //specify verb and url
+            http.open('POST', '/api/users/register/', true);
+        
+            //Send the proper header information along with the request
+            http.setRequestHeader('Content-type', 'application/json');
+        
+            //send request
+            http.send(JSON.stringify(userData));
+        
+            //response
+            http.onload = function() {
+                var response = JSON.parse(http.response);
+                alert(response); 
+                if (response.includes("pin")){
+                    window.location.replace("/login");
+                }
+            };
+        }
+        else {
+            alert("Please enter a valid phone number. Ex 860-123-4567");
+        }
     }
     else {
         event.preventDefault();

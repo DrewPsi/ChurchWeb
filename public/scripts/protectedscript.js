@@ -179,35 +179,52 @@ function signup() {
     var date = getDate();
     var sub = document.getElementById("sub").value;
 
-    if (name != "" && phone != ""){
-        subData = {
-            name: name,
-            phone: phone,
-            job: job,
-            shift: shift,
-            date: date,
-            sub: sub
-        };
-        
-        var http = new XMLHttpRequest();
-    
-        //specify verb and url
-        http.open('POST', '/api/scheduling/add', true);
-    
-        //Send the proper header information along with the request
-        http.setRequestHeader('Content-type', 'application/json');
-    
-        //send request
-        http.send(JSON.stringify(subData));
-    
-        //response
-        http.onload = function() {
-            var response = JSON.parse(http.response);
-            alert(response); 
-            closeSignup();
-            getSheetInfo(date,shift);
-        };
+    //Reformats the phone number
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+        if (match) {
+          return match[1] + '-' + match[2] + '-' + match[3]
+        }
+        return null
+    }
 
+    //Makes sure the fields are filled in
+    if (name != "" && phone != ""){
+        //Validates phone number format
+        if(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(phone)){
+            subData = {
+                name: name,
+                phone: formatPhoneNumber(phone),
+                job: job,
+                shift: shift,
+                date: date,
+                sub: sub
+            };
+            
+            var http = new XMLHttpRequest();
+        
+            //specify verb and url
+            http.open('POST', '/api/scheduling/add', true);
+        
+            //Send the proper header information along with the request
+            http.setRequestHeader('Content-type', 'application/json');
+        
+            //send request
+            http.send(JSON.stringify(subData));
+        
+            //response
+            http.onload = function() {
+                var response = JSON.parse(http.response);
+                alert(response); 
+                closeSignup();
+                getSheetInfo(date,shift);
+            };
+    
+        }
+        else {
+            alert("Please enter a valid phone number. Ex 860-123-4567");
+        }
     }
     else {
         alert("Please fill in all fields");
