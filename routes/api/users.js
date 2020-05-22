@@ -1,5 +1,6 @@
 var express = require("express");
 var crypto = require('crypto');
+var validator = require("email-validator");
 
 var router = express.Router();
 
@@ -106,16 +107,22 @@ router.post("/register", function(req, res){
     MongoClient.connect(url, function(err, db) {
         var dbo = db.db(db_name);
         
-        dbo.collection("Users").insertOne(req.body, function(err, result) {
-            //If the user already exists
-            if (err) {
-                res.json("Error, an account with this email address already exists.");
-            }
-            else {
-                res.json("Account Created! Your pin is " + pin);
-            }
-            db.close();
-        });
+        if(validator.validate(req.body.email)){
+            dbo.collection("Users").insertOne(req.body, function(err, result) {
+                //If the user already exists
+                if (err) {
+                    res.json("Error, an account with this email address already exists.");
+                }
+                else {
+                    res.json("Account Created! Your pin is " + pin + "\n(Remember to write down your pin somewhere so you don't forget it)");
+                }
+                db.close();
+            });
+        }
+        else {
+            res.json("Please enter a valid email");
+        }
+
     });
 });
 

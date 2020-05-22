@@ -67,7 +67,9 @@ function register(event) {
         http.onload = function() {
             var response = JSON.parse(http.response);
             alert(response); 
-            window.location.replace("/login");
+            if (response.includes("pin")){
+                window.location.replace("/login");
+            }
         };
     }
     else {
