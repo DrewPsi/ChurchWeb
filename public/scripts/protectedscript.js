@@ -19,6 +19,9 @@ function logout() {
 //Loads the sheet for a given date and shift
 function getSheetInfo(date, shift){
 
+    document.getElementById("dateHead").innerText = document.getElementById(date).innerText;
+    document.getElementById("timeHead").innerText = document.getElementById(shift).innerText;
+
     //A helper function for getting the current user
     function currentUser(list){
         var http = new XMLHttpRequest();
@@ -166,9 +169,86 @@ function loadDate(date) {
         }
     }
 
+    //A helper function that loads the shift times on the navbar
+    function loadShiftText() {
+
+        //A helper function that hides all the shift times
+        function hideShifts() {
+            var shifts = document.getElementsByClassName("shift");
+            
+            for (let i = 0; i < shifts.length; i++) {
+                shifts[i].style.display = "none";
+            }
+        }
+
+        hideShifts();
+
+        switch(date) {
+            case 'October2':
+                document.getElementById('1').style.display = "inline";
+                document.getElementById('1').firstElementChild.innerText = "4:45pm-9:45pm";
+                break
+
+            case 'October3':
+            case 'October10':
+                document.getElementById('1').style.display = "inline";
+                document.getElementById('1').firstElementChild.innerText = "8:00am-11:45am";
+
+                document.getElementById('2').style.display = "inline";
+                document.getElementById('2').firstElementChild.innerText = "11:30am-3:15pm";
+
+                document.getElementById('3').style.display = "inline";
+                document.getElementById('3').firstElementChild.innerText = "3:00pm-6:30pm";
+
+                document.getElementById('4').style.display = "inline";
+                document.getElementById('4').firstElementChild.innerText = "6:15pm-9:45pm";
+                break
+
+            case 'October4':
+            case 'October11':
+                document.getElementById('1').style.display = "inline";
+                document.getElementById('1').firstElementChild.innerText = "8:00am-11:45am";
+
+                document.getElementById('2').style.display = "inline";
+                document.getElementById('2').firstElementChild.innerText = "11:30am-3:15pm";
+
+                document.getElementById('3').style.display = "inline";
+                document.getElementById('3').firstElementChild.innerText = "3:00pm-7:45pm";
+                break
+
+            case 'October5':
+                document.getElementById('1').style.display = "inline";
+                document.getElementById('1').firstElementChild.innerText = "5:30am-9:00am";
+
+                document.getElementById('2').style.display = "inline";
+                document.getElementById('2').firstElementChild.innerText = "8:45am-12:30pm";
+
+                document.getElementById('3').style.display = "inline";
+                document.getElementById('3').firstElementChild.innerText = "12:15pm-4:30pm";
+
+                document.getElementById('4').style.display = "inline";
+                document.getElementById('4').firstElementChild.innerText = "4:15pm-7:45pm";
+                break
+
+            case 'October9':
+                document.getElementById('1').style.display = "inline";
+                document.getElementById('1').firstElementChild.innerText = "5:30am-9:00am";
+
+                document.getElementById('2').style.display = "inline";
+                document.getElementById('2').firstElementChild.innerText = "8:45am-12:30pm";
+
+                document.getElementById('3').style.display = "inline";
+                document.getElementById('3').firstElementChild.innerText = "12:15pm-4:30pm";
+                break
+        }
+    }
+
     deDate();
     document.getElementById(date).classList.add("active");
     
+    loadShiftText();
+    loadShift('1');
+
     getSheetInfo(date, getShift());
 }
 
