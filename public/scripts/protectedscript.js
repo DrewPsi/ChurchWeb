@@ -18,9 +18,27 @@ function logout() {
 
 //Loads the sheet for a given date and shift
 function getSheetInfo(date, shift){
-    //A helper function for loading the page
-    function setPage(list){
 
+    //A helper function for getting the current user
+    function currentUser(list){
+        var http = new XMLHttpRequest();
+    
+        //specify verb and url
+        http.open('GET', '/api/users/getinfo/');
+        
+        //send request
+        http.send();
+
+        //response
+        http.onload = function() {
+            var response = JSON.parse(http.response);
+            setPage(list, response.name);
+        };
+    }
+
+    //A helper function for loading the page
+    function setPage(list, subName){
+        
         //Places a signup button in each row
         docList = document.getElementsByClassName("inputField");
         for (let i = 0; i < docList.length; i++) {
@@ -49,6 +67,16 @@ function getSheetInfo(date, shift){
             document.getElementById(job).innerText = name;
             document.getElementById(job+"Num").innerText = phone;
             document.getElementById(job+"Sub").innerText = sub;
+
+            //If the current user submitted it, allows the current user to delete it
+            if (subName == sub) {
+                var btn = document.createElement("button");
+                btn.setAttribute("onclick", "deleteJob('" + job + "')");
+                btn.setAttribute("class", "btn-lg btn-dark float-right");
+                btn.innerText="DELETE";
+                document.getElementById(job).appendChild(btn);
+            }
+            
         });
         
     }
@@ -72,7 +100,7 @@ function getSheetInfo(date, shift){
     //response
     http.onload = function() {
         var response = JSON.parse(http.response);
-        setPage(response);
+        currentUser(response);
     };
 }
 
@@ -232,4 +260,34 @@ function signup() {
         alert("Please fill in all fields");
     }
 
+}
+
+//Deletes a user from being signed up for a job
+function deleteJob(job) {
+    var date = getDate();
+    var shift = getShift();
+
+    var subData = {
+        date: date,
+        shift: shift,
+        job: job
+    };
+
+    var http = new XMLHttpRequest();
+        
+    //specify verb and url
+    http.open('POST', '/api/scheduling/delete', true);
+        
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/json');
+        
+    //send request
+    http.send(JSON.stringify(subData));
+        
+    //response
+    http.onload = function() {
+        var response = JSON.parse(http.response);
+        alert(response); 
+        getSheetInfo(date,shift);
+    };
 }

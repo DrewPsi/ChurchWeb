@@ -69,4 +69,13 @@ router.post("/get", function(req,res){
     });
 });
 
+//Deletes a user from the signup
+router.post("/delete", function(req, res) {
+    MongoClient.connect(url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(req.body.date).deleteOne({job:req.body.job, shift:req.body.shift});
+        res.json("Successfully deleted.");
+      });
+});
+
 module.exports = router;
