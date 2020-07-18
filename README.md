@@ -4,7 +4,7 @@ A website for helping Zion Lutheran Church with organizing volunteers for their 
 ---
 # A quick overview of the site
 ## The Homepage
-![](Homepage.jpg)
+![](READMEImages/Homepage.jpg)
 - The homepage is what the user sees when they first open up the website. The are welcomed with a picture of an apple orchard and a quote by Martin Luther.
 ## About
 ![](About.jpg)
