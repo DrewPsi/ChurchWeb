@@ -136,19 +136,21 @@ router.post("/register", function(req, res){
 
 //Gets the users name and number
 router.get("/getinfo", function(req, res){
-    MongoClient.connect(url, function(err, db) {
-        var dbo = db.db(db_name);
-        
-        dbo.collection("Users").findOne({email:req.user}, function(err, result) {
-            if (result) {
-                //If the user already exists
-                var name = result.firstName + " " + result.lastName;
-                var phone = result.phone;
-                res.json({name:name, phone:phone});
-                db.close();
-            }
+    if(req.user) {
+        MongoClient.connect(url, function(err, db) {
+            var dbo = db.db(db_name);
+            
+            dbo.collection("Users").findOne({email:req.user}, function(err, result) {
+                if (result) {
+                    //If the user already exists
+                    var name = result.firstName + " " + result.lastName;
+                    var phone = result.phone;
+                    res.json({name:name, phone:phone});
+                    db.close();
+                }
+            });
         });
-    });
+    }
 });
 
 module.exports = router;

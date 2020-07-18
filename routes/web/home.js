@@ -18,6 +18,7 @@ router.get("/signup", function(req, res){
     res.render("home/signup");
 });
 
+//If the user is logged in loads the protected page, otherwise prompts user to log in
 router.get("/protected", function(req,res){
     if (req.user) {
         res.render('home/protected');
